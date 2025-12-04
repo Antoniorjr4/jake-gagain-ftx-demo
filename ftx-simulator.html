@@ -14,18 +14,18 @@
         }
         
         .gradient-bg {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         
         .glass-effect {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .spinner {
             border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top: 3px solid #dc2626;
+            border-top: 3px solid #667eea;
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -45,32 +45,26 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(220, 38, 38, 0.8), 0 0 60px rgba(220, 38, 38, 0.4); }
-        }
-        .btn-impact {
-            animation: pulse-glow 2s infinite;
-        }
     </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen">
-    <!-- Header -->
-    <header class="gradient-bg py-4 shadow-lg">
-        <div class="container mx-auto px-4">
+<body class="bg-gray-950 text-white min-h-screen">
+    <!-- Header with Back Button -->
+    <header class="border-b border-gray-800 bg-gray-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between flex-wrap gap-4">
                 <div class="flex items-center gap-3">
-                    <h1 class="text-2xl md:text-3xl font-bold tracking-tight">ANNΛ Protocol | FTX Case Study</h1>
+                    <button 
+                        onclick="window.location.href='index.html'"
+                        class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-all">
+                        <i class="fas fa-arrow-left"></i>
+                        <span class="hidden sm:inline">Back</span>
+                    </button>
+                    <div class="w-8 h-8 rounded bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center font-bold text-white">Λ</div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-tight">FTX Trading Simulator</h1>
                 </div>
                 <div class="flex items-center gap-3">
-                    <button 
-                        onclick="openImpactModal()"
-                        class="btn-impact bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold px-4 py-2 rounded-full text-sm transition-all">
-                        💥 What If...
-                    </button>
                     <a href="https://dashboard.annaprotocol.online" target="_blank" 
-                       class="px-4 py-2 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition text-sm md:text-base">
+                       class="text-sm text-gray-400 hover:text-white transition">
                         Dashboard
                     </a>
                 </div>
@@ -82,72 +76,66 @@
     <main class="container mx-auto px-4 py-8 md:py-12">
         <!-- Hero Section -->
         <div class="text-center mb-8 md:mb-12 fade-in">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Trading AI Decisions Simulator</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Trading AI Decisions</h2>
             <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-                Simulate how ANNA would have audited FTX/Alameda's automated trading decisions
+                Select a scenario to see how ANNA would have documented critical FTX/Alameda trading decisions
             </p>
-            <div class="mt-4 inline-block bg-red-900/30 border border-red-500 rounded-lg px-6 py-3">
-                <p class="text-sm text-red-300">
-                    <i class="fas fa-exclamation-triangle mr-2"></i>
-                    These AI decisions moved <strong>$8 billion</strong> with zero transparency
-                </p>
-            </div>
         </div>
 
         <!-- Scenario Selector -->
         <div class="max-w-4xl mx-auto">
             <div id="scenarioSection" class="glass-effect rounded-2xl p-6 md:p-8 mb-8">
-                <h3 class="text-2xl font-bold mb-6 text-center">Select Critical Decision Type</h3>
+                <h3 class="text-2xl font-bold mb-6 text-center">Select Decision Type</h3>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- Scenario 1: Unauthorized Transfer -->
                     <button onclick="selectScenario('transfer')" 
-                            class="scenario-btn glass-effect hover:bg-red-900/30 border-2 border-gray-700 hover:border-red-500 rounded-xl p-6 text-left transition-all">
+                            class="scenario-btn bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-purple-500 rounded-xl p-6 text-left transition-all">
                         <div class="flex items-start gap-4">
                             <div class="text-3xl">🔄</div>
                             <div>
                                 <h4 class="font-bold text-lg mb-2">Unauthorized Transfer</h4>
                                 <p class="text-sm text-gray-400">AI moved customer funds from FTX to Alameda</p>
-                                <p class="text-red-400 font-bold mt-2">$2.3B moved</p>
+                                <p class="text-purple-400 font-bold mt-2">$2.3B moved</p>
                             </div>
                         </div>
                     </button>
 
                     <!-- Scenario 2: Liquidation Decision -->
                     <button onclick="selectScenario('liquidation')" 
-                            class="scenario-btn glass-effect hover:bg-red-900/30 border-2 border-gray-700 hover:border-red-500 rounded-xl p-6 text-left transition-all">
+                            class="scenario-btn bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-purple-500 rounded-xl p-6 text-left transition-all">
                         <div class="flex items-start gap-4">
                             <div class="text-3xl">⚡</div>
                             <div>
                                 <h4 class="font-bold text-lg mb-2">Forced Liquidation</h4>
-                                <p class="text-sm text-gray-400">AI liquidated customer positions to cover Alameda losses</p>
-                                <p class="text-red-400 font-bold mt-2">$890M affected</p>
+                                <p class="text-sm text-gray-400">AI liquidated customer positions to cover losses</p>
+                                <p class="text-purple-400 font-bold mt-2">$890M affected</p>
                             </div>
                         </div>
                     </button>
 
                     <!-- Scenario 3: Risk Score Manipulation -->
                     <button onclick="selectScenario('risk')" 
-                            class="scenario-btn glass-effect hover:bg-red-900/30 border-2 border-gray-700 hover:border-red-500 rounded-xl p-6 text-left transition-all">
+                            class="scenario-btn bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-purple-500 rounded-xl p-6 text-left transition-all">
                         <div class="flex items-start gap-4">
                             <div class="text-3xl">📊</div>
                             <div>
                                 <h4 class="font-bold text-lg mb-2">Risk Score Override</h4>
                                 <p class="text-sm text-gray-400">AI lowered Alameda's risk score despite red flags</p>
-                                <p class="text-red-400 font-bold mt-2">89% → 12%</p>
+                                <p class="text-purple-400 font-bold mt-2">89% → 12%</p>
                             </div>
                         </div>
                     </button>
 
                     <!-- Scenario 4: Trading Bot Decision -->
                     <button onclick="selectScenario('trading')" 
-                            class="scenario-btn glass-effect hover:bg-red-900/30 border-2 border-gray-700 hover:border-red-500 rounded-xl p-6 text-left transition-all">
+                            class="scenario-btn bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-purple-500 rounded-xl p-6 text-left transition-all">
                         <div class="flex items-start gap-4">
                             <div class="text-3xl">🤖</div>
                             <div>
                                 <h4 class="font-bold text-lg mb-2">Automated Trade Execution</h4>
                                 <p class="text-sm text-gray-400">Bot executed massive sell orders during collapse</p>
-                                <p class="text-red-400 font-bold mt-2">$1.7B volume</p>
+                                <p class="text-purple-400 font-bold mt-2">$1.7B volume</p>
                             </div>
                         </div>
                     </button>
@@ -401,9 +389,9 @@
         </div>
     </div>
 
-    <footer class="container mx-auto px-4 py-8 text-center text-gray-500 text-sm">
-        <p>ANNA Protocol | Demo on Polygon Amoy Testnet</p>
-        <p class="mt-2 text-xs">Case study based on public records from SEC, DOJ investigations</p>
+    <footer class="container mx-auto px-4 py-8 text-center text-gray-500 text-sm border-t border-gray-900">
+        <p class="mb-2">ANNA Protocol - AI Accountability on Blockchain</p>
+        <p>Demo on Polygon Amoy Testnet • Case study based on public SEC/DOJ records</p>
     </footer>
 
     <script>

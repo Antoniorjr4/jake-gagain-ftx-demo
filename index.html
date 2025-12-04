@@ -7,363 +7,328 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
-        body {
-            font-family: 'Inter', sans-serif;
+        body { font-family: 'Inter', sans-serif; }
+        
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .gradient-text { background: linear-gradient(135deg, #a78bfa 0%, #667eea 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .glass-effect {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .gradient-bg {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-        }
+        .fade-in { animation: fadeIn 0.5s ease-in forwards; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .hero-gradient {
-            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 30px rgba(220, 38, 38, 0.5); }
-            50% { box-shadow: 0 0 60px rgba(220, 38, 38, 0.8), 0 0 90px rgba(220, 38, 38, 0.4); }
-        }
-        
-        .cta-button {
-            animation: pulse-glow 2s infinite;
-        }
+        .hidden { display: none; }
     </style>
 </head>
-<body class="bg-gray-900 text-white">
-    <!-- Header -->
-    <header class="gradient-bg py-4 shadow-lg">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <h1 class="text-2xl md:text-3xl font-bold tracking-tight">ANNΛ Protocol</h1>
-            <a href="https://dashboard.annaprotocol.online" target="_blank" 
-               class="px-4 py-2 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition text-sm md:text-base">
-                Dashboard
-            </a>
+<body class="bg-gray-950 text-white min-h-screen flex flex-col">
+
+    <header class="border-b border-gray-800 bg-gray-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center font-bold text-white">Λ</div>
+                <h1 class="text-xl font-bold tracking-tight">ANNΛ Protocol <span class="text-gray-500 mx-2">×</span> FTX Case Study</h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://dashboard.annaprotocol.online" target="_blank" class="text-sm text-gray-400 hover:text-white transition">Dashboard</a>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient py-20 md:py-32">
-        <div class="container mx-auto px-4 text-center">
-            <div class="float-animation mb-8">
-                <i class="fas fa-exclamation-triangle text-8xl text-red-500"></i>
-            </div>
-            
-            <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                What If <span class="text-red-500">FTX</span> Had<br/>
-                <span class="bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text">
-                    AI Transparency?
-                </span>
-            </h2>
-            
-            <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12">
-                Explore how ANNA Protocol would have created an <strong class="text-white">immutable audit trail</strong> 
-                for every AI decision that moved <strong class="text-red-400">$8 billion</strong> in customer funds.
-            </p>
-            
-            <button onclick="window.location.href='ftx-simulator.html'"
-                    class="cta-button bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-4 px-12 rounded-full text-xl transition-all transform hover:scale-105">
-                <i class="fas fa-play-circle mr-2"></i>
-                Experience The Demo
-            </button>
-        </div>
-    </section>
+    <main class="container mx-auto px-4 py-8 flex-grow">
 
-    <!-- The Problem -->
-    <section class="py-20 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <div class="max-w-5xl mx-auto">
-                <h3 class="text-3xl md:text-4xl font-bold text-center mb-12">
-                    <i class="fas fa-skull-crossbones text-red-500 mr-3"></i>
-                    The Catastrophic Failure
-                </h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Stat 1 -->
-                    <div class="bg-red-900/20 border-2 border-red-800 rounded-2xl p-8 text-center">
-                        <div class="text-6xl font-black text-red-500 mb-4">$8B</div>
-                        <p class="text-xl text-gray-300">Customer funds lost</p>
-                        <p class="text-sm text-gray-500 mt-2">Moved by automated systems</p>
-                    </div>
-                    
-                    <!-- Stat 2 -->
-                    <div class="bg-orange-900/20 border-2 border-orange-800 rounded-2xl p-8 text-center">
-                        <div class="text-6xl font-black text-orange-500 mb-4">0%</div>
-                        <p class="text-xl text-gray-300">Transparency</p>
-                        <p class="text-sm text-gray-500 mt-2">No audit trail for AI decisions</p>
-                    </div>
-                    
-                    <!-- Stat 3 -->
-                    <div class="bg-yellow-900/20 border-2 border-yellow-800 rounded-2xl p-8 text-center">
-                        <div class="text-6xl font-black text-yellow-500 mb-4">1M+</div>
-                        <p class="text-xl text-gray-300">Victims</p>
-                        <p class="text-sm text-gray-500 mt-2">People who lost everything</p>
-                    </div>
-                    
-                    <!-- Stat 4 -->
-                    <div class="bg-gray-800 border-2 border-gray-700 rounded-2xl p-8 text-center">
-                        <div class="text-6xl font-black text-gray-400 mb-4">???</div>
-                        <p class="text-xl text-gray-300">Unknown</p>
-                        <p class="text-sm text-gray-500 mt-2">Why each AI decision was made</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- The Solution -->
-    <section class="py-20 bg-gradient-to-b from-gray-900 to-black">
-        <div class="container mx-auto px-4">
-            <div class="max-w-5xl mx-auto">
-                <h3 class="text-3xl md:text-4xl font-bold text-center mb-12">
-                    <i class="fas fa-shield-alt text-green-500 mr-3"></i>
-                    How ANNA Prevents This
-                </h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Feature 1 -->
-                    <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 hover:border-green-500 transition">
-                        <div class="text-5xl mb-6">🔍</div>
-                        <h4 class="text-xl font-bold mb-3 text-green-400">Full Transparency</h4>
-                        <p class="text-gray-400">Every AI decision recorded with complete reasoning on-chain</p>
-                    </div>
-                    
-                    <!-- Feature 2 -->
-                    <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 hover:border-blue-500 transition">
-                        <div class="text-5xl mb-6">⛓️</div>
-                        <h4 class="text-xl font-bold mb-3 text-blue-400">Immutable Records</h4>
-                        <p class="text-gray-400">Blockchain attestations that can't be deleted or modified</p>
-                    </div>
-                    
-                    <!-- Feature 3 -->
-                    <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 hover:border-purple-500 transition">
-                        <div class="text-5xl mb-6">⚖️</div>
-                        <h4 class="text-xl font-bold mb-3 text-purple-400">Regulatory Ready</h4>
-                        <p class="text-gray-400">SEC, CFTC, DOJ audit-ready documentation automatically</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4 Scenarios -->
-    <section class="py-20 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <h3 class="text-3xl md:text-4xl font-bold text-center mb-4">
-                    4 Critical AI Decisions
-                </h3>
-                <p class="text-center text-gray-400 mb-12 text-lg">
-                    Each one moved billions. None had accountability. Until now.
+        <!-- LANDING SECTION -->
+        <div id="landingSection" class="fade-in" style="animation-delay: 0.1s;">
+            
+            <!-- Hero -->
+            <div class="text-center mb-16 mt-8">
+                <h2 class="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
+                    How AI Transparency <br>
+                    <span class="gradient-text">Could Have Changed FTX</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+                    Explore how ANNA Protocol would have created an immutable audit trail for 
+                    every AI decision that moved <span class="text-white font-semibold">$8 billion</span> in customer funds.
                 </p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Scenario 1 -->
-                    <div class="bg-gray-800 rounded-xl p-6 border-l-4 border-red-500 hover:bg-gray-750 transition">
-                        <div class="flex items-start gap-4">
-                            <div class="text-4xl">🔄</div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Unauthorized Transfer</h4>
-                                <p class="text-gray-400 text-sm mb-3">AI moved $2.3B from customer accounts to Alameda without consent</p>
-                                <span class="px-3 py-1 bg-red-900 text-red-300 rounded-full text-xs font-bold">CRITICAL</span>
-                            </div>
-                        </div>
+                <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-8">
+                    <button onclick="document.getElementById('tutorial').scrollIntoView({behavior: 'smooth'})" 
+                            class="px-8 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-full font-semibold transition">
+                        <i class="fas fa-book mr-2"></i> How to Use
+                    </button>
+                    <button onclick="startSimulation()" 
+                            class="group relative px-8 py-4 bg-white text-gray-900 rounded-full font-bold text-lg hover:bg-gray-100 transition shadow-lg">
+                        Try Simulation
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+                
+                <div class="max-w-2xl mx-auto bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/30 text-sm">
+                    <p class="text-gray-400">
+                        <i class="fas fa-info-circle text-purple-400 mr-2"></i>
+                        <strong class="text-white">Interactive Demo:</strong> Experience 4 critical AI decisions that moved billions without accountability.
+                    </p>
+                </div>
+            </div>
+
+            <!-- What Happened -->
+            <div class="max-w-5xl mx-auto mb-20">
+                <h3 class="text-3xl font-bold text-center mb-10">
+                    The <span class="text-red-400">FTX Collapse</span>
+                </h3>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="glass-effect rounded-xl p-6">
+                        <div class="text-3xl mb-3">💸</div>
+                        <h4 class="text-xl font-bold mb-2">$8.5 Billion Lost</h4>
+                        <p class="text-sm text-gray-400">Customer funds disappeared through automated AI systems</p>
                     </div>
                     
-                    <!-- Scenario 2 -->
-                    <div class="bg-gray-800 rounded-xl p-6 border-l-4 border-orange-500 hover:bg-gray-750 transition">
-                        <div class="flex items-start gap-4">
-                            <div class="text-4xl">⚡</div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Forced Liquidation</h4>
-                                <p class="text-gray-400 text-sm mb-3">Liquidated 12,847 customer accounts to cover Alameda losses</p>
-                                <span class="px-3 py-1 bg-orange-900 text-orange-300 rounded-full text-xs font-bold">HIGH RISK</span>
-                            </div>
-                        </div>
+                    <div class="glass-effect rounded-xl p-6">
+                        <div class="text-3xl mb-3">⚫</div>
+                        <h4 class="text-xl font-bold mb-2">Zero Transparency</h4>
+                        <p class="text-sm text-gray-400">No audit trail for AI decisions. Hidden for 2+ years</p>
                     </div>
                     
-                    <!-- Scenario 3 -->
-                    <div class="bg-gray-800 rounded-xl p-6 border-l-4 border-yellow-500 hover:bg-gray-750 transition">
-                        <div class="flex items-start gap-4">
-                            <div class="text-4xl">📊</div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Risk Score Override</h4>
-                                <p class="text-gray-400 text-sm mb-3">Lowered Alameda risk from 89% to 12% despite insolvency</p>
-                                <span class="px-3 py-1 bg-yellow-900 text-yellow-300 rounded-full text-xs font-bold">CRITICAL</span>
-                            </div>
-                        </div>
+                    <div class="glass-effect rounded-xl p-6">
+                        <div class="text-3xl mb-3">👥</div>
+                        <h4 class="text-xl font-bold mb-2">1M+ Victims</h4>
+                        <p class="text-sm text-gray-400">People lost life savings with no explanation</p>
                     </div>
                     
-                    <!-- Scenario 4 -->
-                    <div class="bg-gray-800 rounded-xl p-6 border-l-4 border-purple-500 hover:bg-gray-750 transition">
-                        <div class="flex items-start gap-4">
-                            <div class="text-4xl">🤖</div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Automated Collapse</h4>
-                                <p class="text-gray-400 text-sm mb-3">Bot executed $1.7B in sells, accelerating market crash</p>
-                                <span class="px-3 py-1 bg-purple-900 text-purple-300 rounded-full text-xs font-bold">HIGH RISK</span>
-                            </div>
-                        </div>
+                    <div class="glass-effect rounded-xl p-6">
+                        <div class="text-3xl mb-3">❓</div>
+                        <h4 class="text-xl font-bold mb-2">Unknown Reasoning</h4>
+                        <p class="text-sm text-gray-400">Why each AI decision was made remains unclear</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- What ANNA Would Have Done -->
-    <section class="py-20 bg-gradient-to-b from-black to-gray-900">
-        <div class="container mx-auto px-4">
-            <div class="max-w-5xl mx-auto">
-                <h3 class="text-3xl md:text-4xl font-bold text-center mb-4">
-                    What ANNA Would Have Changed
+            <!-- How ANNA Changes This -->
+            <div class="max-w-5xl mx-auto mb-20">
+                <h3 class="text-3xl font-bold text-center mb-10">
+                    How <span class="text-purple-400">ANNA</span> Would Have Changed This
                 </h3>
-                <p class="text-center text-gray-400 mb-12 text-lg">
-                    ANNA doesn't physically block fraud. It makes fraud <strong class="text-white">impossible to hide.</strong>
-                </p>
                 
-                <!-- Timeline Comparison -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                    <!-- Without ANNA -->
-                    <div class="bg-red-900/20 border-2 border-red-700 rounded-xl p-8">
-                        <h4 class="text-2xl font-bold mb-6 text-red-400">
-                            <i class="fas fa-times-circle mr-2"></i>Without ANNA
-                        </h4>
-                        <div class="space-y-4 text-gray-300">
-                            <div class="flex gap-3">
-                                <span class="text-red-500 font-bold">2020-2022:</span>
-                                <span>Fraud hidden for 2+ years. Zero visibility.</span>
+                <div class="glass-effect rounded-xl p-8 mb-8">
+                    <div class="bg-blue-900/30 rounded-lg p-4 mb-6 border border-blue-500/50">
+                        <p class="text-lg text-gray-300">
+                            <strong class="text-blue-400">Key Point:</strong> ANNA doesn't physically block fraud. 
+                            It makes fraud <strong class="text-white">impossible to hide</strong> through immutable blockchain records.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Without ANNA -->
+                        <div class="bg-gray-800/50 rounded-lg p-6">
+                            <h4 class="text-lg font-bold mb-4 text-red-400">What Happened</h4>
+                            <div class="space-y-3 text-sm text-gray-300">
+                                <div>
+                                    <p class="text-gray-500">2020-2022</p>
+                                    <p>Fraud happening. Nobody knows.</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Nov 2022</p>
+                                    <p>Collapse. $8.5B gone.</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">2023</p>
+                                    <p>Investigation starts. No records.</p>
+                                </div>
                             </div>
-                            <div class="flex gap-3">
-                                <span class="text-red-500 font-bold">Nov 2022:</span>
-                                <span>Total collapse. $8.5B lost. Customers blindsided.</span>
-                            </div>
-                            <div class="flex gap-3">
-                                <span class="text-red-500 font-bold">2023:</span>
-                                <span>Investigation begins. "No records found" everywhere.</span>
-                            </div>
-                            <div class="flex gap-3">
-                                <span class="text-red-500 font-bold">Result:</span>
-                                <span class="font-bold">Complete devastation. 1M+ victims.</span>
+                        </div>
+                        
+                        <!-- With ANNA -->
+                        <div class="bg-gray-800/50 rounded-lg p-6 border border-green-500/30">
+                            <h4 class="text-lg font-bold mb-4 text-green-400">With ANNA</h4>
+                            <div class="space-y-3 text-sm text-gray-300">
+                                <div>
+                                    <p class="text-gray-500">April 2021</p>
+                                    <p>Red flags visible. Regulators alerted.</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">June 2021</p>
+                                    <p>SEC freezes operations. Early stop.</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">August 2021</p>
+                                    <p>Complete evidence. Quick arrests.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- With ANNA -->
-                    <div class="bg-green-900/20 border-2 border-green-700 rounded-xl p-8">
-                        <h4 class="text-2xl font-bold mb-6 text-green-400">
-                            <i class="fas fa-check-circle mr-2"></i>With ANNA
-                        </h4>
-                        <div class="space-y-4 text-gray-300">
-                            <div class="flex gap-3">
-                                <span class="text-green-500 font-bold">Apr 2021:</span>
-                                <span>Red flags visible on blockchain. Regulators alerted.</span>
-                            </div>
-                            <div class="flex gap-3">
-                                <span class="text-green-500 font-bold">Jun 2021:</span>
-                                <span>SEC/CFTC freeze operations. Early intervention.</span>
-                            </div>
-                            <div class="flex gap-3">
-                                <span class="text-green-500 font-bold">Aug 2021:</span>
-                                <span>Complete audit trail reviewed. Arrests made quickly.</span>
-                            </div>
-                            <div class="flex gap-3">
-                                <span class="text-green-500 font-bold">Result:</span>
-                                <span class="font-bold">Losses limited to ~$500M. 95% customers protected.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Key Differences -->
-                <div class="bg-gradient-to-r from-purple-900/30 to-blue-900/30 rounded-xl p-8 border-2 border-purple-500">
-                    <h4 class="text-2xl font-bold text-center mb-6 text-purple-300">
-                        Three Game-Changing Differences
-                    </h4>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                        <div>
-                            <div class="text-4xl mb-3">🚨</div>
-                            <h5 class="font-bold text-lg mb-2 text-yellow-400">Early Detection</h5>
-                            <p class="text-sm text-gray-400">Red flags visible in <strong class="text-white">real-time</strong>, not discovered 2 years later</p>
-                        </div>
-                        
-                        <div>
-                            <div class="text-4xl mb-3">⚖️</div>
-                            <h5 class="font-bold text-lg mb-2 text-blue-400">Instant Evidence</h5>
-                            <p class="text-sm text-gray-400">Every decision recorded. No "we lost the logs" excuses</p>
-                        </div>
-                        
-                        <div>
-                            <div class="text-4xl mb-3">🛡️</div>
-                            <h5 class="font-bold text-lg mb-2 text-green-400">Deterrent Effect</h5>
-                            <p class="text-sm text-gray-400">Fraud not worth it when <strong class="text-white">impossible to hide</strong></p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Bottom Line -->
-                <div class="mt-12 text-center">
-                    <div class="inline-block bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl px-12 py-8 shadow-2xl">
-                        <p class="text-sm text-green-200 mb-3">THE BOTTOM LINE</p>
-                        <p class="text-4xl font-black text-white mb-4">
+                    <div class="mt-6 text-center bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-lg p-4 border border-green-500/30">
+                        <p class="text-sm text-gray-400 mb-1">Estimated Impact</p>
+                        <p class="text-2xl font-bold text-white">
                             $8.5B → $500M
                         </p>
-                        <p class="text-lg text-green-100">
-                            <strong>95% reduction in losses</strong> through early regulatory intervention
-                        </p>
-                        <p class="text-sm text-green-200 mt-4">
-                            ANNA Cost: ~$100K/year | ROI: Detection 18 months earlier
-                        </p>
+                        <p class="text-sm text-gray-400 mt-1">95% reduction through early detection</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- CTA -->
-    <section class="py-20 bg-gray-900">
-        <div class="container mx-auto px-4 text-center">
-            <h3 class="text-3xl md:text-4xl font-bold mb-6">
-                See It In Action
-            </h3>
-            <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                Experience how ANNA would have documented each critical decision
-            </p>
-            <button onclick="window.location.href='ftx-simulator.html'"
-                    class="cta-button bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-4 px-12 rounded-full text-xl transition-all transform hover:scale-105">
-                <i class="fas fa-rocket mr-2"></i>
-                Launch Simulator
-            </button>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-gray-500 text-sm mb-2">ANNA Protocol - AI Accountability on Blockchain</p>
-            <p class="text-gray-600 text-xs">Demo on Polygon Amoy Testnet | Case study based on public SEC/DOJ records</p>
-            <div class="mt-4 flex justify-center gap-6">
-                <a href="https://dashboard.annaprotocol.online" target="_blank" class="text-gray-500 hover:text-white transition">
-                    <i class="fas fa-chart-line"></i> Dashboard
-                </a>
-                <a href="https://annaprotocol.com/verify.html" target="_blank" class="text-gray-500 hover:text-white transition">
-                    <i class="fas fa-certificate"></i> Verifier
-                </a>
-                <a href="https://github.com/annaprotocol" target="_blank" class="text-gray-500 hover:text-white transition">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
+            <!-- 4 Scenarios -->
+            <div class="max-w-5xl mx-auto mb-20">
+                <h3 class="text-3xl font-bold text-center mb-4">
+                    4 Critical AI Decisions
+                </h3>
+                <p class="text-center text-gray-400 mb-10">
+                    Each moved billions. None had accountability. See how ANNA would have documented them.
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass-effect rounded-xl p-6 hover:border-purple-500/50 transition cursor-pointer" onclick="startSimulation()">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl">🔄</div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">Unauthorized Transfer</h4>
+                                <p class="text-sm text-gray-400 mb-3">$2.3B moved without customer consent</p>
+                                <span class="px-3 py-1 bg-red-900/30 text-red-300 rounded-full text-xs">CRITICAL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect rounded-xl p-6 hover:border-purple-500/50 transition cursor-pointer" onclick="startSimulation()">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl">⚡</div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">Forced Liquidation</h4>
+                                <p class="text-sm text-gray-400 mb-3">12,847 accounts liquidated to cover losses</p>
+                                <span class="px-3 py-1 bg-orange-900/30 text-orange-300 rounded-full text-xs">HIGH RISK</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect rounded-xl p-6 hover:border-purple-500/50 transition cursor-pointer" onclick="startSimulation()">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl">📊</div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">Risk Score Override</h4>
+                                <p class="text-sm text-gray-400 mb-3">89% risk reduced to 12% despite insolvency</p>
+                                <span class="px-3 py-1 bg-yellow-900/30 text-yellow-300 rounded-full text-xs">CRITICAL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect rounded-xl p-6 hover:border-purple-500/50 transition cursor-pointer" onclick="startSimulation()">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl">🤖</div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">Automated Trading</h4>
+                                <p class="text-sm text-gray-400 mb-3">$1.7B in panic sells accelerated collapse</p>
+                                <span class="px-3 py-1 bg-purple-900/30 text-purple-300 rounded-full text-xs">HIGH RISK</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- How to Use Tutorial -->
+            <div id="tutorial" class="max-w-5xl mx-auto mb-20">
+                <h3 class="text-3xl font-bold text-center mb-10">
+                    How to <span class="text-purple-400">Use This Demo</span>
+                </h3>
+                
+                <div class="space-y-6">
+                    <div class="glass-effect rounded-xl p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center font-bold">1</div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">Click "Try Simulation"</h4>
+                                <p class="text-gray-400">You'll see 4 real scenarios from the FTX collapse</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect rounded-xl p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center font-bold">2</div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">Select a Decision Type</h4>
+                                <p class="text-gray-400">Choose from transfers, liquidations, risk scoring, or trading</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect rounded-xl p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center font-bold">3</div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">See the Attestation</h4>
+                                <p class="text-gray-400">Watch as ANNA creates an immutable blockchain record with full AI reasoning, red flags, and regulatory violations</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect rounded-xl p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center font-bold">4</div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">Verify on Blockchain</h4>
+                                <p class="text-gray-400">Click the transaction hash to see the real attestation on PolygonScan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why This Matters -->
+            <div class="max-w-5xl mx-auto mb-20">
+                <h3 class="text-3xl font-bold text-center mb-10">
+                    Why This <span class="text-blue-400">Matters</span>
+                </h3>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-effect rounded-xl p-6 border border-purple-500/30">
+                        <div class="text-3xl mb-3">🚨</div>
+                        <h4 class="text-lg font-bold mb-2 text-purple-300">Early Detection</h4>
+                        <p class="text-sm text-gray-400">Red flags visible in real-time, not discovered 2 years later</p>
+                    </div>
+
+                    <div class="glass-effect rounded-xl p-6 border border-blue-500/30">
+                        <div class="text-3xl mb-3">⚖️</div>
+                        <h4 class="text-lg font-bold mb-2 text-blue-300">Instant Evidence</h4>
+                        <p class="text-sm text-gray-400">Every decision recorded. No "we lost the logs" excuses</p>
+                    </div>
+
+                    <div class="glass-effect rounded-xl p-6 border border-green-500/30">
+                        <div class="text-3xl mb-3">🛡️</div>
+                        <h4 class="text-lg font-bold mb-2 text-green-300">Deterrent Effect</h4>
+                        <p class="text-sm text-gray-400">Fraud not worth it when impossible to hide</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final CTA -->
+            <div class="text-center py-12">
+                <button onclick="startSimulation()" 
+                        class="group relative px-12 py-5 bg-white text-gray-900 rounded-full font-bold text-xl hover:bg-gray-100 transition shadow-lg">
+                    Experience The Demo
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="mt-auto py-8 border-t border-gray-900 bg-black/20">
+        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+            <p class="mb-2">ANNA Protocol - AI Accountability on Blockchain</p>
+            <p>Case Study Demo • Polygon Amoy Testnet • <a href="https://annaprotocol.com" class="text-purple-400 hover:underline">annaprotocol.com</a></p>
         </div>
     </footer>
+
+    <script>
+        function startSimulation() {
+            window.location.href = 'ftx-simulator.html';
+        }
+    </script>
 </body>
 </html>
